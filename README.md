@@ -1,6 +1,10 @@
 # HarvestReport
 
-This script generates a pdf file with the time entries which is linked to an invoice. The layout of the timesheet report closely resembles the layout of the invoice.
+Generate timesheet reports from [Harvest](www.getharvest.com) invoices.
+
+The Harvest web interface does not have the option to easily generate reports, stating exactly which timeentries are used for a given invoice.
+
+This python script generates a .pdf file with the time entries linked to an invoice number. The layout of the timesheet report closely resembles the layout of the invoice, such that it can be included with the invoice when sending it the customer.
 
 
 ## Getting Started
