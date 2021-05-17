@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" media="all" href="./files/fonts.css">
+        <link rel="stylesheet" media="all" href="./files/client.css">
+        <link rel="stylesheet" media="print" href="./files/print.css">
+    </head>
+    <body class="client-views-controller index-action ">
+        <main role="main">
+            <div class="wrapper">
+                <header id="document-header" class="pds-screen-only">
+                    <div class="clearfix">
+                        <div class="fl-right">
+                            <div class="pds-button-toggle desktop-only">
+                                <button type="button" title="Print Invoice" class="pds-button" data-print="">Print</button>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="client-document-container">
+                    <div id="client-document" class=" ">
+                        <div id="client-document-status" class="client-doc-header">
+                            <div class="client-doc-name">
+                                <h1 class="client-doc-doc-type">{{ header }}</h1>
+                            </div>
+                            <div style="clear:right;"></div>
+                            <div class="client-doc-from client-doc-address">
+                                <h3>{{ translations.from }}</h3>
+                                <div>
+                                    <strong>{{ customizations.company_name | replace('\\n', '<br>') }}</strong>
+                                    <span class="company-address">
+                                    {{ customizations.company_address | replace('\\n', '<br>') }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="client-doc-for client-doc-address">
+                                <h3>{{ translations.to }}</h3>
+                                <div>
+                                    <strong>{{ client.name }}</strong>
+                                    <span class="company-address">
+                                    {% autoescape false %} {{ client.address | replace('\r\n', '<br>') }} {% endautoescape %}
+                                    <br>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="client-doc-details">
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="label">{{ translations.number }}</td>
+                                            <td class="definition test-invoice-number"><strong>{{ invoice.number }}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label">{{ translations.date }}</td>
+                                            <td class="definition">{{ invoice.issue_date }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+                        <table class="client-doc-items" cellspacing="0" cellpadding="0" border="0">
+                            <thead class="client-doc-items-header desktop-only">
+                                <tr>
+                                    <th class="item-custom">{{ translations.project }}</th>
+                                    <th class="item-custom">{{ translations.task }}</th>
+                                    <th class="item-custom">{{ translations.date }}</th>
+                                    <th class="item-custom">{{ translations.hours }}</th>
+                                    <th class="item-description">{{ translations.description }}</th>
+                                </tr>
+                            </thead>
+                            <tbody class="client-doc-rows">
+                            	{% for item in items %}
+                                <tr>
+                                    <td class="item-custom">{{ item.project.name }}</td>
+                                    <td class="item-custom">{{ item.task.name }}</td>
+                                    <td class="item-custom">{{ item.spent_date }}</td>
+                                    <td class="item-custom">{{ item.rounded_hours }}</td>
+                                    <td class="item-description">{{ item.notes }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
