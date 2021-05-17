@@ -14,7 +14,7 @@ class Harvest:
         self.headers = headers
         self.print_responses = print_responses
 
-    def _request_data(self, url, per_page=100, page=1, print_response=False):
+    def __request_data(self, url, per_page=100, page=1, print_response=False):
         url_paginated = 'https://api.harvestapp.com/v2/' + url + '?page=' + str(page) + '&per_page=' + str(per_page)
         request = urllib.request.Request(url=url_paginated, headers=self.headers)
         response = urllib.request.urlopen(request, timeout=5)
@@ -28,7 +28,7 @@ class Harvest:
         """Search all invoices to locate the one with the given invoice number."""
         next_page = 1
         while next_page:
-            json_data = self._request_data('invoices', page=next_page, print_response=self.print_responses)
+            json_data = self.__request_data('invoices', page=next_page, print_response=self.print_responses)
             for json_invoice in json_data['invoices']:
                 if json_invoice['number'] == number:
                     return json_invoice
@@ -40,7 +40,7 @@ class Harvest:
         next_page = 1
         lines = []
         while next_page:
-            json_data = self._request_data('time_entries', page=next_page, print_response=self.print_responses)
+            json_data = self.__request_data('time_entries', page=next_page, print_response=self.print_responses)
             for entry in json_data['time_entries']:
                 if entry['invoice']:
                     if entry['invoice']['id'] == invoice_id:
@@ -50,7 +50,7 @@ class Harvest:
 
     def get_client(self, client_id):
         """Return the client with the given ID."""
-        return self._request_data('clients/' + str(client_id), print_response=self.print_responses)
+        return self.__request_data('clients/' + str(client_id), print_response=self.print_responses)
 
 
 class Config:
