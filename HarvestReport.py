@@ -86,6 +86,7 @@ def generate_report(invoice, client, items, keephtml, customizations, translatio
                     '--enable-local-file-access',
                     '--print-media-type',
                     '--dpi',  '1200',
+                    '--no-outline',
                     './html/' + filename + '.html',
                     filename + '.pdf'])
 

@@ -3021,7 +3021,10 @@ tr .hui-well {
 	border-right: 1px solid #cccccc;
 	float: none;
 	font-weight: normal;
-	padding: 10px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 10px;
+	padding-right: 10px;
 	text-align: left;
 	vertical-align: top
 }
