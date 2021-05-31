@@ -57,7 +57,7 @@ class Config:
     """Load the configuration file."""
     def __init__(self, filename='config.ini'):
         configparser = ConfigParser()
-        configparser.read(filename)
+        configparser.read(filename, encoding='utf-8')
         self.headers = {
             "User-Agent": configparser.get('auth', 'user-agent'),
             "Authorization": 'Bearer ' + configparser.get('auth', 'token'),
